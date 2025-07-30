@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'users',
     'scans',
     'products',
+    'chats'
     'ai',
 ]
 
