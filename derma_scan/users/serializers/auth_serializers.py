@@ -20,7 +20,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'email', 'username', 
             'password', 'password_two', 'birthday',
-            'bio', 'profile_image'
             )
 
     def validate(self, data):
@@ -35,8 +34,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             username = validated_data['username'],
             password=validated_data['password'],
             birthday = validated_data.get('birthday'),
-            bio = validated_data.get('bio'),
-            profile_image = validated_data.get('profile_image')
         )
         
         return user

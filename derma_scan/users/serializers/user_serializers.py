@@ -6,33 +6,10 @@ from users.models.user import CustomerUser
 
 
 __all__ = [
-    'ProfileSerializer',
     'ProfileDetailSerializer',
     'ProfileUpdateSerializer'
 ]
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomerUser
-        exclude = ['id', 'bio', 'email', 'birthday']
-
-    def validate_profile_image(self, image):
-        valid_formats = ['JPEG', 'JPG', 'PNG']
-        max_size = 2 * 1024 * 1024  
-
-        if image.size > max_size:
-            raise serializers.ValidationError('Image size should not exceed 2 MB.')
-        
-        try:
-            img = Image.open(image)
-            if img.format.upper() not in valid_formats:
-                raise serializers.ValidationError(f"Image format must be one of: {', '.join(valid_formats)}.")
-        except Exception:
-            raise serializers.ValidationError('Invalid image file')
-
-        return image
-
- 
 class ProfileDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomerUser
@@ -48,14 +25,11 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
         fields = (
             'email', 'username', 
             'password', 'password_two', 'birthday',
-            'bio', 'profile_image'
             )
         extra_kwargs = {
             'email': {'required': False},
             'username': {'required': False},
-            'birthday': {'required': False},
-            'bio': {'required': False},
-            'profile_image': {'required': False},
+            'birthday': {'required': False}
         }
         
     def validate(self, data):
@@ -70,8 +44,6 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
         actual.email = validated_data.get('email', actual.email)
         actual.username = validated_data.get('username', actual.username)
         actual.birthday = validated_data.get('birthday', actual.birthday)
-        actual.bio = validated_data.get('bio', actual.bio)
-        actual.profile_image = validated_data.get('profile_image', actual.profile_image)
 
         if 'password' in validated_data:
             actual.set_password(validated_data['password'])  

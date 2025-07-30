@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from utils.validators import validate_birthday
+from utils import validate_birthday
 
 
 __all__ = [
@@ -24,18 +24,12 @@ class CustomerUser(AbstractUser):
         null=True,
         blank=True
         )
-    bio = models.TextField(
-        max_length=250,
-        verbose_name='Bio',
-        null=True,
-        blank=True
-        )
-    profile_image = models.ImageField(
-        upload_to='profile_images',
-        verbose_name='Profile image',
-        null=True,
-        blank=True
-        )
+    is_active = models.BooleanField(
+        default=True
+    )
+    is_premium = models.BooleanField(
+        default=False
+    )
     
     def __str__(self):
         return f'{self.username} - {self.email}'
