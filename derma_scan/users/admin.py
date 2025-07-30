@@ -14,7 +14,7 @@ class CustomerUserAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password')}),
-        ('Personal Info', {'fields': ('birthday')}),
+        ('Personal Info', {'fields': ('birthday',)}),
         ('Permissions', {'fields': ('is_active', 'is_premium' 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )

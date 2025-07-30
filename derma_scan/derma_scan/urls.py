@@ -22,7 +22,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('apis.user_apis.urls')),
-    path('api/v1/', include('apis.chat_ai_apis.urls')),
+    # path('api/v1/', include('apis.ai_apis.urls')),
 
     # Swagger & Redoc
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),

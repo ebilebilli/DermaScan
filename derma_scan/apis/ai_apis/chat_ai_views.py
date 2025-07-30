@@ -5,15 +5,15 @@
 # from rest_framework.permissions import AllowAny
 
 # from movies.models.movie import Movie
-# from chat_ai.tasks import generate_ai_response_task
+# from ai.tasks import generate_ai_response_task
 
 
 # __all__ = [
-#     'ChatAITaskRequestAPIView',
-#     'ChatAITaskResponseAPIView',
+#     'AITaskRequestAPIView',
+#     'AITaskResponseAPIView',
 # ]
 
-# class ChatAITaskRequestAPIView(APIView):
+# class AITaskRequestAPIView(APIView):
 #     permission_classes = [AllowAny]
 #     http_method_names = ['post']
 
@@ -34,7 +34,7 @@
 #         return Response({'task_id': task.id}, status=status.HTTP_200_OK)
 
 
-# class ChatAITaskResponseAPIView(APIView):
+# class AITaskResponseAPIView(APIView):
 #     permission_classes = [AllowAny]
 #     http_method_names = ['get']
 

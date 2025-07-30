@@ -48,8 +48,10 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     # Apps
-    'users'
-    'chat_ai'
+    'users',
+    'scans',
+    'products',
+    'ai',
 ]
 
 
