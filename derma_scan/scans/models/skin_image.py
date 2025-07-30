@@ -1,7 +1,7 @@
 from django.db import models
-from datetime import datetime
 
 from users.models import CustomerUser
+from utils import skin_image_upload_path
 
 class SkinImage(models.Model):
     user = models.ForeignKey(
@@ -9,9 +9,8 @@ class SkinImage(models.Model):
         on_delete=models.CASCADE,
         verbose_name='User'
     )
-
     image = models.ImageField(
-        upload_to=f'SkinImages/skin_image:{datetime.now()}',
+        upload_to=skin_image_upload_path,
         verbose_name='Image'
     )
     body_part = models.CharField(
