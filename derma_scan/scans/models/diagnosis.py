@@ -9,10 +9,17 @@ class Diagnosis(models.Model):
         on_delete=models.CASCADE, 
         related_name='diagnosis'
     )
-    result = models.CharField(
-        max_length=255,
-        verbose_name='Result'
-    ) 
+    label = models.CharField(
+        max_length=150,
+        verbose_name='Label'
+        )
+    description = models.TextField(
+        max_length=350
+    )
+    ai_response = models.TextField(
+        null=True,
+        blank=True
+    )
     confidence = models.FloatField(
         verbose_name='Confidence'
     )  
