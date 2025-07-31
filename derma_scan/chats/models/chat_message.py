@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from users.models.user import CustomerUser
 from scans.models.skin_image import SkinImage
@@ -14,7 +15,9 @@ class ChatMessage(models.Model):
 
     user = models.ForeignKey(
         CustomerUser, 
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True, 
+        blank=True, 
     )
     image = models.ForeignKey(
         SkinImage, 
@@ -30,12 +33,21 @@ class ChatMessage(models.Model):
         )  
     message = models.TextField(
         max_length=500,
-        verbose_name='Message'
+        verbose_name='Message',
+        null=True, 
+        blank=True, 
         )
    
     created_at = models.DateTimeField(
         auto_now_add=True
     )
+
+    def clean(self):
+        if self.image == None and self.message == None:
+            raise ValidationError({'error': 'You must write message or upload any image'})
+    
+    def save(self, *args, **kwargs):
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f'Message from {self.user.id} at {self.created_at.strftime("%Y-%m-%d %H:%M:%S")}'
