@@ -13,7 +13,7 @@ __all__ = [
 class ProfileDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomerUser
-        fields = '__all__'
+        exclude = ('terms_accepted',)
 
 
 class ProfileUpdateSerializer(serializers.ModelSerializer):

@@ -6,8 +6,8 @@ from .models import CustomerUser
 @admin.register(CustomerUser)
 class CustomerUserAdmin(UserAdmin):
     model = CustomerUser
-    list_display = ('username', 'email', 'birthday', 'is_staff', 'is_active', 'is_premium')
-    list_filter = ('is_staff', 'is_active', 'is_premium')
+    list_display = ('username', 'email', 'birthday', 'is_staff', 'is_active', 'is_premium', 'terms_accepted')
+    list_filter = ('is_staff', 'is_active', 'is_premium', 'terms_accepted')
     search_fields = ('username', 'email')
     ordering = ('-date_joined',)
     readonly_fields = ('last_login', 'date_joined')
@@ -22,6 +22,6 @@ class CustomerUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2', 'birthday', 'is_premium', 'is_active', 'is_staff')}
+            'fields': ('username', 'email', 'password1', 'password2', 'birthday', 'is_premium', 'is_active', 'is_staff', 'terms_accepted')}
         ),
     )

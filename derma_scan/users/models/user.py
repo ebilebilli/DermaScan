@@ -24,6 +24,11 @@ class CustomerUser(AbstractUser):
         null=True,
         blank=True
         )
+    terms_accepted = models.BooleanField(
+        default=False,
+        editable=False,
+        verbose_name='Terms of Service'
+        )
     is_active = models.BooleanField(
         default=True
     )
@@ -33,4 +38,7 @@ class CustomerUser(AbstractUser):
     
     def __str__(self):
         return f'{self.username} - {self.email}'
-     
+    
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
