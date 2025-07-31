@@ -18,11 +18,10 @@ class SkinImageAdmin(admin.ModelAdmin):
 
 @admin.register(Diagnosis)
 class DiagnosisAdmin(admin.ModelAdmin):
-    list_display = ('id', 'image', 'result', 'confidence', 'created_at')
+    list_display = ('user', 'image', 'label', 'confidence', 'created_at')
+    search_fields = ('label', 'description', 'user__username')
     list_filter = ('created_at',)
-    search_fields = ('result', 'image__user__username')
-    readonly_fields = ('created_at',)
-    ordering = ('-created_at',)
+    readonly_fields = ('created_at', 'ai_response')
 
 
 @admin.register(ProductRecommendation)

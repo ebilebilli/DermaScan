@@ -89,7 +89,7 @@ def generate_diagnosis_response_task(diagnosis_id):
         diagnosis.ai_response = content
         diagnosis.save()
 
-        return {'ai_response': content}
+        return  content
 
     except Diagnosis.DoesNotExist:
         return {'error': f'Diagnosis with ID {diagnosis_id} not found.'}
