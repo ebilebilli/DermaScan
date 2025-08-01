@@ -12,7 +12,7 @@ openai.api_key = settings.OPENAI_TOKEN
 @shared_task
 def ai_response_model_task(message=None, image_id=None, user_id=None):
     prompt = ""
-
+    
     if image_id:
         try:
             image = SkinImage.objects.get(id=image_id)
