@@ -66,13 +66,18 @@ def ai_response_model_task(message=None, image_id=None, user_id=None):
         except ValueError:
             confidence = None
 
-        diagnosis = Diagnosis.objects.create(
+        Diagnosis.objects.create(
             user=user,
             image=image,
             label=label,
             description=description,
             confidence=confidence,
             ai_response=content
+        )
+        ChatMessage.objects.create(
+            sender=ChatMessage.AI,
+            user=user,
+            message=content
         )
         return content
 
