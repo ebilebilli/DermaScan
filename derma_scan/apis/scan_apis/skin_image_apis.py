@@ -1,3 +1,4 @@
+from django.db import transaction
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from django.shortcuts import get_object_or_404
@@ -30,6 +31,7 @@ class UploadImageAPIView(APIView):
         request_body=SkinImageSerializer,
         responses={201: SkinImageSerializer}
     )
+    @transaction.atomic
     def post(self, request):
         data = request.data
         serializer = SkinImageSerializer(
