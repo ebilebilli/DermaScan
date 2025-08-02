@@ -38,6 +38,13 @@ class UploadImageAPIView(APIView):
         )
         if serializer.is_valid():
             image = serializer.save()
+            ChatMessage.objects.create(
+                sender=ChatMessage.USER,
+                user=request.user,
+                image=image,
+                message=None  
+            )
+
             ai_response_model_task.delay(image_id=image.id) 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
