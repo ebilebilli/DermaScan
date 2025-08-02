@@ -7,8 +7,13 @@ app_name = 'scan_apis'
 
 urlpatterns = [
     path(
-        'upload/', 
+        'image/upload/', 
         UploadImageAPIView.as_view(), 
         name='upload-image'
-        ),
+    ),
+    path(
+        'image/<int:image_id>/delete/', 
+        DeleteImageAPIView.as_view(), 
+        name='delete-image'
+    ),
 ]

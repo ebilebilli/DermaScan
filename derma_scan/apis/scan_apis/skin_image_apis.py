@@ -1,3 +1,4 @@
+from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
@@ -15,9 +16,9 @@ from ai.tasks import ai_response_model_task
 
 
 __all__ = [
-    'UploadImageAPIView'
+    'UploadImageAPIView',
+    'DeleteImageAPIView'
 ]
-
 
 
 class UploadImageAPIView(APIView):
@@ -41,3 +42,35 @@ class UploadImageAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DeleteImageAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    http_method_names = ['delete']
+    
+    @swagger_auto_schema(
+        operation_description="Delete a image.",
+        manual_parameters=[
+            openapi.Parameter(
+                'image_id',
+                openapi.IN_PATH,
+                description="ID of the image to delete",
+                type=openapi.TYPE_INTEGER,
+                required=True,
+            ),
+        ],
+        responses={204: 'No Content', 404: 'Not Found'}     
+    )
+    def delete(self, request, image_id):
+        try:
+            image = SkinImage.objects.get(id=image_id)
+            image.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        
+        except SkinImage.DoesNotExist:
+            return Response(
+                {'message': 'Image not found.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        
