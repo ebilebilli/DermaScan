@@ -8,7 +8,6 @@ from chats.models import ChatMessage
 
 openai.api_key = settings.OPENAI_TOKEN
 
-
 @shared_task
 def ai_response_model_task(message=None, image_id=None, user_id=None):
     prompt = ""
@@ -78,6 +77,9 @@ def ai_response_model_task(message=None, image_id=None, user_id=None):
             sender=ChatMessage.AI,
             user=user,
             message=content
+        )
+        SkinImage.objects.update(
+            is_analyzed=True
         )
         return content
 

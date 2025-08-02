@@ -9,9 +9,9 @@ from .models import (
 
 @admin.register(SkinImage)
 class SkinImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'body_part', 'uploaded_at', 'is_analyzed')
+    list_display = ('id', 'user', 'uploaded_at', 'is_analyzed')
     list_filter = ('body_part', 'is_analyzed', 'uploaded_at')
-    search_fields = ('user__username', 'body_part')
+    search_fields = ('user__username')
     readonly_fields = ('uploaded_at',)
     ordering = ('-uploaded_at',)
 

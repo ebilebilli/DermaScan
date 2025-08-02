@@ -15,10 +15,6 @@ class SkinImage(models.Model):
         upload_to=skin_image_upload_path,
         verbose_name='Image'
     )
-    body_part = models.CharField(
-        max_length=100,
-        verbose_name='Body Part'
-    )
     uploaded_at = models.DateTimeField(
         auto_now_add=True
     )
