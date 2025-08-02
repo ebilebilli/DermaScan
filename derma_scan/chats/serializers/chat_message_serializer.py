@@ -16,5 +16,4 @@ class ChatMessageSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         validated_data['user'] = request.user 
         validated_data['sender'] = ChatMessage.USER
-
         return super().create(validated_data)
