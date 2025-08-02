@@ -14,6 +14,12 @@ from scans.serializers import SkinImageSerializer
 from ai.tasks import ai_response_model_task
 
 
+__all__ = [
+    'UploadImageAPIView'
+]
+
+
+
 class UploadImageAPIView(APIView):
     permission_classes = [IsAuthenticated]
     http_method_names = ['post']
