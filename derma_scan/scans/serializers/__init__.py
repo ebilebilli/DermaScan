@@ -1,0 +1,1 @@
+from .skin_image_serializer import SkinImageSerializer
