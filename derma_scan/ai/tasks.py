@@ -44,7 +44,7 @@ def ai_response_model_task(message=None, image_id=None, user_id=None):
         return {'error': 'Neither image nor message provided.'}
 
     response = openai.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=[
             {'role': 'system', 'content': 'You are an AI skin diagnostic tool. Respond medically and clearly.'},
             {'role': 'user', 'content': prompt},
