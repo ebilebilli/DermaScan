@@ -37,7 +37,6 @@ class ChatMessagesListAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
         
 
-
 class CreateMessageAPIView(APIView):
     permission_classes = [IsAuthenticated]
     http_method_names = ['post']
