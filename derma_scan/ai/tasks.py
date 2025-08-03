@@ -78,9 +78,8 @@ def ai_response_model_task(message=None, image_id=None, user_id=None):
             user=user,
             message=content
         )
-        SkinImage.objects.update(
-            is_analyzed=True
-        )
+        image.is_analyzed = True
+        image.save()
         return content
 
     else:

@@ -3,7 +3,7 @@ from rest_framework import serializers
 from chats.models import ChatMessage
 
 
-class ChatMessageSerializer(serializers.ModelSerializer):
+class CreateChatMessageSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
 
     class Meta:
@@ -11,7 +11,8 @@ class ChatMessageSerializer(serializers.ModelSerializer):
         exclude = (
             'id', 
             'user', 
-            'sender'
+            'sender',
+            'image',
         )
     
     def create(self, validated_data):

@@ -10,7 +10,6 @@ class SkinImageSerializer(serializers.ModelSerializer):
         model = SkinImage
         exclude = (
             'user',
-            'body_part',
             'uploaded_at',
             'is_analyzed'
         )

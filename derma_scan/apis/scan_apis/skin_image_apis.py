@@ -21,7 +21,6 @@ __all__ = [
     'DeleteImageAPIView'
 ]
 
-
 class UploadImageAPIView(APIView):
     permission_classes = [IsAuthenticated]
     http_method_names = ['post']
