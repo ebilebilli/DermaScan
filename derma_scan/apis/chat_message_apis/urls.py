@@ -3,7 +3,7 @@ from django.urls import path
 from apis.chat_message_apis.chat_message import *
 
 
-app_name = 'scan_apis'
+app_name = 'chat_apis'
 
 urlpatterns = [
     path(
