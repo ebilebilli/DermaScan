@@ -7,14 +7,19 @@ app_name = 'chat_apis'
 
 urlpatterns = [
     path(
-        'chat/', 
+        'chat/messages', 
         ChatMessagesListAPIView.as_view(), 
         name='chat-messages'
     ),
     path(
-        'message/create/', 
+        'chat/message/create/', 
         CreateMessageAPIView.as_view(), 
         name='create-message'
+    ),
+    path(
+        'chat/message/<int:message_id>/delete/', 
+        DeleteMessageAPIView.as_view(), 
+        name='delete-message'
     ),
  
 ]

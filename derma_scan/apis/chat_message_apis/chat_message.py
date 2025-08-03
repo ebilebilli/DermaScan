@@ -17,6 +17,7 @@ from ai.tasks import ai_response_model_task
 __all__ = [
     'ChatMessagesListAPIView',
     'CreateMessageAPIView',
+    'DeleteMessageAPIView'
 ]
 
 class ChatMessagesListAPIView(APIView):
@@ -59,3 +60,35 @@ class CreateMessageAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DeleteMessageAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    http_method_names = ['delete']
+    
+    @swagger_auto_schema(
+        operation_description="Delete a message.",
+        manual_parameters=[
+            openapi.Parameter(
+                'message_id',
+                openapi.IN_PATH,
+                description="ID of the message to delete",
+                type=openapi.TYPE_INTEGER,
+                required=True,
+            ),
+        ],
+        responses={204: 'No Content', 404: 'Not Found'}     
+    )
+    def delete(self, request, message_id):
+        try:
+            image = ChatMessage.objects.get(id=message_id)
+            image.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        
+        except ChatMessage.DoesNotExist:
+            return Response(
+                {'message': 'Message not found.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        
