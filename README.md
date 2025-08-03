@@ -115,19 +115,4 @@ DermaScan/
 - **Celery Worker**: Background task processing
 - **PostgreSQL Database**: Primary data storage
 - **Redis**: Caching and message broker
-- **Nginx** (optional): Reverse proxy and static file serving
 
-s
-- Use conventional commit messages
-
-
-
----
-
-<div align="center">
-
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/dermascan?style=social)](https://github.com/yourusername/dermascan)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/dermascan?style=social)](https://github.com/yourusername/dermascan)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/dermascan)](https://github.com/yourusername/dermascan/issues)
-
-</div> 
