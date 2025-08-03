@@ -23,7 +23,7 @@ class CreateMessageAPIView(APIView):
     http_method_names = ['post']
 
     @swagger_auto_schema(
-        operation_description="Upload a skin image to initiate AI-powered dermatological analysis asynchronously.",
+        operation_description="Create a new chat message and trigger AI analysis asynchronously.",
         request_body=ChatMessageSerializer,
         responses={201: ChatMessageSerializer}
     )
