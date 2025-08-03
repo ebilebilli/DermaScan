@@ -15,8 +15,24 @@ from ai.tasks import ai_response_model_task
 
 
 __all__ = [
+    'ChatMessagesListAPIView',
     'CreateMessageAPIView',
 ]
+
+class ChatMessagesListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    http_method_names = ['get']
+
+    def get(self, request):
+        user = request.user
+        try :
+            chats = ChatMessage.objects.filter(user=user)
+            serializer = ChatMessageSerializer(chats, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        except ChatMessage.DoesNotExist:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CreateMessageAPIView(APIView):
     permission_classes = [IsAuthenticated]

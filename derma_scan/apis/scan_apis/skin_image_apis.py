@@ -32,6 +32,7 @@ class UploadImageAPIView(APIView):
     )
     @transaction.atomic
     def post(self, request):
+        user = request.user
         data = request.data
         serializer = SkinImageSerializer(
             data=data, 
@@ -41,7 +42,7 @@ class UploadImageAPIView(APIView):
             image = serializer.save()
             ChatMessage.objects.create(
                 sender=ChatMessage.USER,
-                user=request.user,
+                user=user,
                 image=image,
                 message=None  
             )

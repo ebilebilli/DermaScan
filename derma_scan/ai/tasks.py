@@ -9,7 +9,7 @@ from chats.models import ChatMessage
 openai.api_key = settings.OPENAI_TOKEN
 
 @shared_task
-def ai_response_model_task(message=None, image_id=None, user_id=None):
+def ai_response_model_task(message=None, image_id=None):
     prompt = ""
     
     if image_id:
@@ -33,7 +33,7 @@ def ai_response_model_task(message=None, image_id=None, user_id=None):
             "Confidence: <confidence_score>"
         )
     elif message:
-        user = CustomerUser.objects.get(id=user_id)
+        user = message.user
         prompt = (
             f"A user has asked the following skin-related question:\n\n"
             f"Message: {message}\n\n"
