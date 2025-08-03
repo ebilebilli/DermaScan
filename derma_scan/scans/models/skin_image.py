@@ -8,6 +8,8 @@ class SkinImage(models.Model):
     user = models.ForeignKey(
         CustomerUser,
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
         related_name='images',
         verbose_name='User'
     )

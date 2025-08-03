@@ -14,6 +14,9 @@ from chats.serializers import ChatMessageSerializer
 from ai.tasks import ai_response_model_task
 
 
+__all__ = [
+    'CreateMessageAPIView',
+]
 
 class CreateMessageAPIView(APIView):
     permission_classes = [IsAuthenticated]
