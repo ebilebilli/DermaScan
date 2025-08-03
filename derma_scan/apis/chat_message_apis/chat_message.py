@@ -22,6 +22,12 @@ __all__ = [
 class ChatMessagesListAPIView(APIView):
     permission_classes = [IsAuthenticated]
     http_method_names = ['get']
+    
+    @swagger_auto_schema(
+        operation_description="Retrieve the list of chat messages sent by the user.",
+        request_body=ChatMessageSerializer,
+        responses={200: ChatMessageSerializer}
+    )
 
     def get(self, request):
         user = request.user
