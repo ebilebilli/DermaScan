@@ -25,13 +25,10 @@ class ChatMessagesListAPIView(APIView):
 
     def get(self, request):
         user = request.user
-        try :
-            chats = ChatMessage.objects.filter(user=user)
-            serializer = ChatMessageSerializer(chats, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        chats = ChatMessage.objects.filter(user=user)
+        serializer = ChatMessageSerializer(chats, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
-        except ChatMessage.DoesNotExist:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CreateMessageAPIView(APIView):

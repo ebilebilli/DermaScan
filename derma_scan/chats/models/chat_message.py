@@ -55,3 +55,4 @@ class ChatMessage(models.Model):
     class Meta:
         verbose_name = 'Chat Message'
         verbose_name_plural = 'Chat Messages'
+        ordering = ['-created_at']
