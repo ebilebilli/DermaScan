@@ -8,7 +8,7 @@ from apis.user_apis.profile_views import *
 app_name = 'user_apis'
 
 urlpatterns = [
-    #Google endpoints
+    # Google endpoints
     path(
         'google/client-id/', 
         GoogleAuthClientIDAPIView.as_view(),

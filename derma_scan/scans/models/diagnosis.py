@@ -3,6 +3,7 @@ from django.db import models
 from .skin_image import SkinImage
 from users.models.user import CustomerUser
 
+
 class Diagnosis(models.Model):
     user = models.OneToOneField(
         CustomerUser,
@@ -33,7 +34,7 @@ class Diagnosis(models.Model):
     )
     
     def __str__(self):
-        return f'Diagnosis for '
+        return f'Diagnosis for {self.user.username}'
 
     class Meta:
         verbose_name = 'Diagnosis'
