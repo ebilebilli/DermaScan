@@ -13,3 +13,4 @@ class ChatMessageAdmin(admin.ModelAdmin):
     def short_message(self, obj):
         return obj.message[:50] + ('...' if len(obj.message) > 50 else '')
     short_message.short_description = 'Message Preview'
+

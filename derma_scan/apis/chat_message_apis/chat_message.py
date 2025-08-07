@@ -27,10 +27,16 @@ class ChatMessagesListAPIView(APIView):
     @swagger_auto_schema(
         operation_description="Retrieve the list of chat messages sent by the user.",
         request_body=ChatMessageSerializer,
-        responses={200: ChatMessageSerializer}
+        responses={
+            200: ChatMessageSerializer,
+            403: 'Forbidden: Permission denied.'
+        }
     )
 
     def get(self, request):
+        if user != user:
+            return Response({'message': 'Permission denied.'}, status=status.HTTP_403_FORBIDDEN)
+        
         user = request.user
         chats = ChatMessage.objects.filter(user=user)
         serializer = ChatMessageSerializer(chats, many=True)
