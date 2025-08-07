@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from scans.models.skin_image import SkinImage
+from scans.models import SkinImage
 
 
 class SkinImageSerializer(serializers.ModelSerializer):
