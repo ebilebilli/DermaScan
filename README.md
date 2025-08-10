@@ -99,11 +99,11 @@ DermaScan/
 ├── derma_scan/                 # Main Django project
 │   ├── derma_scan/            # Project settings and configuration
 │   ├── users/                 # Custom user management
-│   ├── scans/                 # Skin image processing and diagnosis
+│   ├── scans/                 # Skin image processing, diagnosis and product recommendation
 │   ├── chats/                 # AI chat system
-│   ├── products/              # Product recommendation system
 │   ├── ai/                    # AI task processing
 │   └── apis/                  # REST API endpoints
+│   
 ├── docker-compose.yml         # Multi-container orchestration
 ├── requirements.txt           # Python dependencies
 ├── Pipfile                    # Pipenv dependency management
