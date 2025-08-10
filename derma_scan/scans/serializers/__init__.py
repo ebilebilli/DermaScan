@@ -1,2 +1,3 @@
 from .skin_image_serializer import SkinImageSerializer
 from .diagnosis_serializer import DiagnosisSerializer
+from .product_serializer import ProductRecommendationSerializer
