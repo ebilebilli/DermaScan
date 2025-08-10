@@ -34,7 +34,7 @@ class Diagnosis(models.Model):
     )
     
     def __str__(self):
-        return f'Diagnosis for {self.user.username}'
+        return f'Diagnosis for {self.label}'
 
     class Meta:
         verbose_name = 'Diagnosis'
