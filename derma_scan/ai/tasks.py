@@ -1,7 +1,7 @@
 import openai
 from celery import shared_task
 from django.conf import settings
-from scans.models import Diagnosis, SkinImage
+from scans.models import Diagnosis, SkinImage, ProductRecommendation
 from chats.models import ChatMessage
 
 openai.api_key = settings.OPENAI_TOKEN
@@ -32,10 +32,12 @@ def ai_response_model_task(message=None, image_id=None):
             "1. A short, clear medical label (condition name)\n"
             "2. A concise, user-friendly description\n"
             "3. Confidence score (0-1)\n\n"
+            "4. Recommend a suitable product name for treatment.\n\n"
             "Respond in format:\n"
             "Label: <condition_name>\n"
             "Description: <short_explanation>\n"
             "Confidence: <confidence_score>"
+            "Product: <product_name>"
         )
 
     else:
@@ -67,20 +69,28 @@ def ai_response_model_task(message=None, image_id=None):
         label = lines[0].replace("Label:", "").strip()
         description = lines[1].replace("Description:", "").strip()
         confidence_str = lines[2].replace("Confidence:", "").strip()
+        product_name = lines[3].replace("Product:", "").strip()
 
         try:
             confidence = float(confidence_str)
         except ValueError:
             confidence = None
 
-        Diagnosis.objects.create(
+        diagnosis = Diagnosis.objects.create(
             user=user,
             image=image,
             label=label,
             description=description,
             confidence=confidence,
             ai_response=content
+            )
+        
+        ProductRecommendation.objects.create(
+            user=user,
+            diagnosis=diagnosis,
+            name=product_name
         )
+
         image.is_analyzed = True
         image.save()
 

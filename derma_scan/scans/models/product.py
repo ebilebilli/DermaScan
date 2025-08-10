@@ -7,20 +7,18 @@ class ProductRecommendation(models.Model):
     diagnosis = models.ForeignKey(
         Diagnosis, 
         on_delete=models.CASCADE, 
-        related_name="product_recommendations"
+        related_name='product_recommendations',
+        null=True,
+        blank=True
     )
     name = models.CharField(
         max_length=255,
         verbose_name='Name'
     )
-    reason = models.TextField(
-        max_length=500,
-        verbose_name='Reason'
-    )
-    url = models.URLField(
-        null=True, 
-        blank=True
-    )
+    # url = models.URLField(
+    #     null=True, 
+    #     blank=True
+    # )
     created_at = models.DateTimeField(
         auto_now_add=True
     )
