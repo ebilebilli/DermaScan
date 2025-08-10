@@ -13,7 +13,7 @@ class Diagnosis(models.Model):
     image = models.OneToOneField(
         SkinImage, 
         on_delete=models.CASCADE, 
-        related_name='diagnosis'
+        related_name='diagnosis',
     )
     label = models.CharField(
         max_length=150,

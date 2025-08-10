@@ -23,9 +23,14 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
 ]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 AUTH_USER_MODEL = 'users.CustomerUser'
+
+SITE_DOMAIN = os.getenv('SITE_DOMAIN')
 
 # Application definition
 
@@ -50,7 +55,6 @@ INSTALLED_APPS = [
     # Apps
     'users',
     'scans',
-    'products',
     'chats'
     'ai',
 ]
