@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     # Apps
     'users',
     'scans',
-    'products',
     'chats'
     'ai',
 ]

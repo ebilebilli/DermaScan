@@ -5,23 +5,23 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 from users.serializers.user_serializers import *
-from scans.models import Diagnosis
-from scans.serializers import DiagnosisSerializer
+from scans.models import ProductRecommendation
+from scans.serializers import ProductRecommendationSerializer
 
 
 __all__ = [
-    'DiagnosisListAPIView',
+    'ProductRecommendationListAPIView',
 ]
 
-class DiagnosisListAPIView(APIView):
+class ProductRecommendationListAPIView(APIView):
     permission_classes = [IsAuthenticated]
     http_method_names = ['get']
     
     @swagger_auto_schema(
-        operation_description="Retrieve the list of Diagnoses of the user.",
-        request_body=DiagnosisSerializer,
+        operation_description="Retrieve the list of Product Recommendations of the user.",
+        request_body=ProductRecommendationSerializer,
         responses={
-            200: DiagnosisSerializer,
+            200: ProductRecommendationSerializer,
             403: 'Forbidden: Permission denied.'
         }
     )
@@ -32,6 +32,6 @@ class DiagnosisListAPIView(APIView):
             return Response({'message': 'Permission denied.'}, status=status.HTTP_403_FORBIDDEN)
 
         user = request.user
-        diagnoses = Diagnosis.objects.filter(user=user)
-        serializer = DiagnosisSerializer(diagnoses, many=True)
+        diagnoses = ProductRecommendation.objects.filter(user=user)
+        serializer = ProductRecommendationSerializer(diagnoses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
